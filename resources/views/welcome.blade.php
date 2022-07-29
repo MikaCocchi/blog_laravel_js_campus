@@ -26,7 +26,7 @@
                 <h2 class="text-2xl	font-bold ">{{$article->title}}</h2>
                 <p>{{Str::limit($article->content,500,' ...')}}</p>
                     <h4>écrit le : {{$article->created_at}}</h4>
-
+                    <p> par {{$article->user->name}}</p>
                 </a>
             </div>
         @endforeach

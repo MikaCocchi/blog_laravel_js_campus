@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Dashboard_articleController;
 use App\Http\Controllers\Dashboard_articlesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -30,4 +31,7 @@ Route::get('/dashboard', function () {return view('dashboard');})->middleware(['
 
 Route::get('/dashboard/articles', [Dashboard_articlesController::class, 'index'])->name('dashboard_articles');
 
+Route::get('/dashboard/articles/create', [Dashboard_articleController::class, 'index'])->name('dashboard_article');
+
+Route::delete('/dashboard/articles/{article}/delete',[Dashboard_articleController::class, 'delete'])->name('dashboard_article_delete');
 require __DIR__.'/auth.php';
