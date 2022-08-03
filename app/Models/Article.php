@@ -15,6 +15,6 @@ class Article extends Model
     }
     public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return$this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 }

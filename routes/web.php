@@ -3,7 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Dashboard_articleController;
 use App\Http\Controllers\Dashboard_articlesController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Dashboard_CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +31,16 @@ Route::get('/dashboard', function () {return view('dashboard');})->middleware(['
 
 Route::get('/dashboard/articles', [Dashboard_articlesController::class, 'index'])->name('dashboard_articles');
 
-Route::get('/dashboard/articles/create', [Dashboard_articleController::class, 'index'])->name('dashboard_article');
+Route::post('/dashboard/articles/add',[Dashboard_articleController::class, 'store'])->name('dashboard_add_article');
 
-Route::delete('/dashboard/articles/{article}/delete',[Dashboard_articleController::class, 'delete'])->name('dashboard_article_delete');
+Route::get('/dashboard/articles/{article}', [Dashboard_articleController::class, 'show'])->name('dashboard_article');
+
+Route::put('/dashboard/articles/{article}', [Dashboard_articleController::class, 'update'])->name('dashboard_article.update');
+
+
+Route::delete('/dashboard/articles/{article}/delete',[Dashboard_articleController::class, 'destroy'])->name('dashboard_article.destroy');
+
+Route::delete('/dashboard/articles/delete/{comment}',[Dashboard_CommentController::class, 'destroy'])->name('dashboard_comment.destroy');
+
+Route::put('/dashboard/articles/modify/{comment}',[Dashboard_CommentController::class, 'update'])->name('dashboard_comment.update');
 require __DIR__.'/auth.php';
